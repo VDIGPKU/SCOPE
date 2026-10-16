@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scope-libero-demo"
+version = "0.1.0"
+description = "SCOPE single-task demo on LIBERO-Pro"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = {file = "LICENSE"}
+dependencies = [
+  "numpy==1.26.4", "scipy==1.15.3", "pillow>=10", "requests>=2.32",
+  "pyyaml>=6", "python-dotenv>=1", "imageio[ffmpeg]>=2.34",
+]
+
+[project.optional-dependencies]
+libero = [
+  "gymnasium>=0.29", "gym==0.25.2", "mujoco==3.3.0", "numba>=0.59",
+  "torch>=2.8", "torchvision>=0.23", "h5py", "easydict==1.9",
+  "robomimic==0.2.0", "bddl==1.0.1", "future", "cloudpickle",
+  "einops", "thop", "matplotlib>=3.8", "open3d>=0.18", "scikit-learn",
+  "opencv-python-headless<4.13", "PyOpenGL==3.1.6", "PyOpenGL-accelerate==3.1.6",
+  "robot-descriptions>=1.16", "yourdfpy>=0.0.56", "viser>=0.2",
+  "omegaconf", "tqdm", "tyro>=0.8.5", "pydantic>=2.7", "rich",
+]
+services = [
+  "torch>=2.8", "torchvision>=0.23", "tyro>=0.8.5", "pydantic>=2.7",
+  "fastapi", "uvicorn", "viser>=0.2", "matplotlib>=3.8", "open3d>=0.18",
+  "opencv-python-headless<4.13", "robot-descriptions>=1.16", "yourdfpy>=0.0.56",
+  "trimesh>=4.4", "pyrender", "huggingface-hub", "einops", "decord", "pycocotools",
+]
+dev = ["pytest>=8"]
+
+[project.scripts]
+scope-demo = "scope.sim.cap.scope.libero_learning:main"
+
+[tool.setuptools]
+license-files = ["LICENSE", "NOTICE", "LICENSES/*.txt"]
+
+[tool.setuptools.packages.find]
+include = ["scope*"]
+exclude = ["scope.sim.tests*"]
+
+[tool.setuptools.package-data]
+"scope.sim" = ["env_configs/libero/*.yaml", "cap/serving/assets/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["scope/sim/tests/scope"]

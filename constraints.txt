@@ -1,0 +1,7 @@
+numpy==1.26.4
+scipy==1.15.3
+mujoco==3.3.0
+PyOpenGL==3.1.6
+PyOpenGL-accelerate==3.1.6
+opencv-python-headless<4.13
+setuptools<81

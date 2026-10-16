@@ -1,0 +1,10 @@
+env:
+  cfg:
+    privileged: false
+    low_level:
+      _target_: scope.sim.cap.envs.simulators.libero.FrankaLiberoEnv
+      privileged: false
+      max_steps: 4000
+      control_freq: 20
+    apis:
+      - FrankaLiberoApiReducedSkillLibrary
